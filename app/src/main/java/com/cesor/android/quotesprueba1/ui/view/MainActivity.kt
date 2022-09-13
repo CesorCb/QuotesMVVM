@@ -1,31 +1,29 @@
-package com.cesor.android.quotesprueba1
+package com.cesor.android.quotesprueba1.ui.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.cesor.android.quotesprueba1.databinding.ActivityMainBinding
-import com.cesor.android.quotesprueba1.viewModel.QuoteViewMdel
+import com.cesor.android.quotesprueba1.ui.viewModel.QuoteViewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val quoteViewModel: QuoteViewMdel by viewModels()
+    private val quoteViewModel: QuoteViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupObserver()
-        binding.viewContainer.setOnClickListener { showQuote() }
+        quoteViewModel.onCreate()
+        setupObservers()
+        binding.viewContainer.setOnClickListener { quoteViewModel.randomQuote() }
     }
 
-    private fun setupObserver() {
+    private fun setupObservers() {
         quoteViewModel.quoteModel.observe(this) { currentQuote ->
             binding.tvQuote.text = currentQuote.quote
             binding.tvAuthor.text = currentQuote.author
         }
-    }
-
-    private fun showQuote() {
-        quoteViewModel.getRandomQuote()
     }
 }
