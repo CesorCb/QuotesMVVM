@@ -3,6 +3,7 @@ package com.cesor.android.quotesprueba1.ui.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import com.cesor.android.quotesprueba1.databinding.ActivityMainBinding
 import com.cesor.android.quotesprueba1.ui.viewModel.QuoteViewModel
 
@@ -24,6 +25,10 @@ class MainActivity : AppCompatActivity() {
         quoteViewModel.quoteModel.observe(this) { currentQuote ->
             binding.tvQuote.text = currentQuote.quote
             binding.tvAuthor.text = currentQuote.author
+        }
+        quoteViewModel.isLoading.observe(this) { isLoading ->
+            binding.progressBar.isVisible = isLoading
+
         }
     }
 }

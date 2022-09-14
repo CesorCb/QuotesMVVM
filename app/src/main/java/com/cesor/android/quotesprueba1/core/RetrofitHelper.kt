@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 /****
  * Project: QuotesPrueba1
  * From: com.cesor.android.quotesprueba1.core
- * Created by: César Castro on 12/09/2022 at 21:17.
+ * Created by: César Castro on 13/09/2022 at 23:17.
  ***/
 object RetrofitHelper {
 
