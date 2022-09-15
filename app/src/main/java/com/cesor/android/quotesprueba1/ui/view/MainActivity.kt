@@ -6,7 +6,9 @@ import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import com.cesor.android.quotesprueba1.databinding.ActivityMainBinding
 import com.cesor.android.quotesprueba1.ui.viewModel.QuoteViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val quoteViewModel: QuoteViewModel by viewModels()

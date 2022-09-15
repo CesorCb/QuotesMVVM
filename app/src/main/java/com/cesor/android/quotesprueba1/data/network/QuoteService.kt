@@ -5,19 +5,19 @@ import com.cesor.android.quotesprueba1.data.model.QuoteModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
+import javax.inject.Inject
 
 /****
  * Project: QuotesPrueba1
  * From: com.cesor.android.quotesprueba1.data.network
  * Created by: César Castro on 13/09/2022 at 23:21.
  ***/
-class QuoteService {
+class QuoteService @Inject constructor(private val api: QuoteApiClient) {
 
-    private val retrofit = RetrofitHelper.getRetrofit()
 
     suspend fun getQuotes(): List<QuoteModel>{
         return withContext(Dispatchers.IO){
-            val response = retrofit.create(QuoteApiClient::class.java).getAllQuotes()
+            val response = api.getAllQuotes()
             response.body() ?: emptyList()
         }
     }
