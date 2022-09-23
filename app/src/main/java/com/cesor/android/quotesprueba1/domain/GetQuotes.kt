@@ -1,10 +1,8 @@
 package com.cesor.android.quotesprueba1.domain
 
 import com.cesor.android.quotesprueba1.data.QuoteRepository
-import com.cesor.android.quotesprueba1.data.model.QuoteModel
-import com.cesor.android.quotesprueba1.data.model.QuoteProvider
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import com.cesor.android.quotesprueba1.data.database.entities.toDatabase
+import com.cesor.android.quotesprueba1.domain.model.Quote
 import javax.inject.Inject
 
 /****
@@ -13,6 +11,14 @@ import javax.inject.Inject
  * Created by: César Castro on 13/09/2022 at 23:26.
  ***/
 class GetQuotes @Inject constructor(private val repository: QuoteRepository) {
-
-    suspend operator fun invoke(): List<QuoteModel> = repository.getAllQuotes()
+    suspend operator fun invoke(): List<Quote> {
+        val quotes = repository.getAllQuotesFromApi()
+        return if (quotes.isNotEmpty()) {
+            repository.clearQuotes()
+            repository.insertQuotes(quotes.map { it.toDatabase() })
+            quotes
+        } else {
+            repository.getAllQuotesFromDatabase()
+        }
+    }
 }

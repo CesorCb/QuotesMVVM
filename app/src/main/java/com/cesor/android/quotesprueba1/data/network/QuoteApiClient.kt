@@ -1,10 +1,8 @@
 package com.cesor.android.quotesprueba1.data.network
 
-import com.cesor.android.quotesprueba1.core.RetrofitHelper
 import com.cesor.android.quotesprueba1.data.model.QuoteModel
 import retrofit2.Response
 import retrofit2.http.GET
-import javax.inject.Inject
 
 /****
  * Project: QuotesPrueba1
