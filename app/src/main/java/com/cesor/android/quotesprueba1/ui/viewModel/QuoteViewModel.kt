@@ -3,9 +3,9 @@ package com.cesor.android.quotesprueba1.ui.viewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.cesor.android.quotesprueba1.data.model.QuoteModel
 import com.cesor.android.quotesprueba1.domain.GetQuotes
 import com.cesor.android.quotesprueba1.domain.GetRandomQuote
+import com.cesor.android.quotesprueba1.domain.model.Quote
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -21,7 +21,7 @@ class QuoteViewModel @Inject constructor(
     val getQuotes: GetQuotes
 ) : ViewModel() {
 
-    var quoteModel = MutableLiveData<QuoteModel>()
+    var quoteModel = MutableLiveData<Quote>()
     var isLoading = MutableLiveData<Boolean>()
 
     fun onCreate() {
@@ -36,11 +36,14 @@ class QuoteViewModel @Inject constructor(
     }
 
     fun randomQuote() {
+        viewModelScope.launch {
+
         isLoading.postValue(true)
         val quote = getRandomQuote()
         if (quote != null) {
             quoteModel.postValue(quote)
         }
         isLoading.postValue(false)
+        }
     }
 }

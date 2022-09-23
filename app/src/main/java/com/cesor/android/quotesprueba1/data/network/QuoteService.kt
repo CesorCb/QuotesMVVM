@@ -1,10 +1,8 @@
 package com.cesor.android.quotesprueba1.data.network
 
-import com.cesor.android.quotesprueba1.core.RetrofitHelper
 import com.cesor.android.quotesprueba1.data.model.QuoteModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import retrofit2.Retrofit
 import javax.inject.Inject
 
 /****

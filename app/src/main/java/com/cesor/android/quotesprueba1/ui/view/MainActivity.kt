@@ -1,8 +1,8 @@
 package com.cesor.android.quotesprueba1.ui.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.cesor.android.quotesprueba1.databinding.ActivityMainBinding
 import com.cesor.android.quotesprueba1.ui.viewModel.QuoteViewModel
