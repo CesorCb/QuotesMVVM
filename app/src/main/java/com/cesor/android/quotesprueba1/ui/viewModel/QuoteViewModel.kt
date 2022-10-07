@@ -37,13 +37,12 @@ class QuoteViewModel @Inject constructor(
 
     fun randomQuote() {
         viewModelScope.launch {
-
-        isLoading.postValue(true)
-        val quote = getRandomQuote()
-        if (quote != null) {
-            quoteModel.postValue(quote)
-        }
-        isLoading.postValue(false)
+            isLoading.postValue(true)
+            val quote = getRandomQuote()
+            if (quote != null) {
+                quoteModel.postValue(quote)
+            }
+            isLoading.postValue(false)
         }
     }
 }
